@@ -1,0 +1,2 @@
+module RideInstanceHelper
+end

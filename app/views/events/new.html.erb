@@ -1,0 +1,19 @@
+<%= form_for @event do |e| %>
+ <%= e.text_field :name %>
+ <%= e.text_field :location %>
+ <div class="form-group">
+    <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="event[time]"/>
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
+ <%= e.submit %>
+<% end %>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
