@@ -1,28 +1,17 @@
-== README
+== Swoopr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Swoopr is a carpool coordination app made with RoR. Intended to be fast and simple, kind of like a when2meet for carpooling.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+=== Project Milestones
+* OAuth with Facebook login **DONE**
+* Event Creation **DONE**
+* Rider/Driver signup for an Event **DONE**
+  * **Rider**
+    * View all drivers + capacities for an event
+    * Join a car
+  * **Driver**
+    * View all riders for each driver
+    * View all free riders
+    * Add free rider to car
+    * Kick rider from car
+* Cool CSS things
