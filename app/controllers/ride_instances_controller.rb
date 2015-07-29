@@ -7,7 +7,7 @@ class RideInstancesController < ApplicationController
     if @event.not_attending?(current_user.id)
       @instance = RideInstance.new
     else
-      redirect_to event_ride_instances_index_path(@event)
+      redirect_to event_ride_instances_path(@event)
     end
   end
 
@@ -18,16 +18,16 @@ class RideInstancesController < ApplicationController
   end
 
   def create
-    raise 'error'
+    #test this
     @user = current_user
     type = params[:instance][:type]
     @event = Event.find(params[:event_id])
-    @instance = EventInstance.new
-    @instance.event = event
-    @instance.rider = user if type == 0 #user wants to be a rider
-    @instance.driver = user if type == 1 #user wants to be a driver
+    @instance = RideInstance.new
+    @instance.event = @event
+    @instance.rider = @user if type.to_i == 0 #user wants to be a rider
+    @instance.driver = @user if type.to_i == 1 #user wants to be a driver
     if @instance.save
-      redirect_to event_ride_instance_path(@event, @instance)
+      redirect_to event_ride_instances_path(@event)
     end
   end
 end
