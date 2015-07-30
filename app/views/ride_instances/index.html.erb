@@ -1,4 +1,28 @@
 <% if @is_rider %>
+	<%= form_for @event do |f| %>
+		<%= f.fields_for @instance do |i| %>
+			<%= hidden_field_tag "action_taken", "rider_quits" %>
+			<%= i.submit "Leave Event" %>
+		<% end %>
+	<% end %>
+	<% if @riders_driver %>
+		<div class="currentDriver">
+			<h1>Current Driver</h1>
+			<div class="driver">
+				Driver: <%= @riders_driver.driver.name %><BR>
+				Pickup Location: <%= @riders_driver.pickup_location %><BR>
+				Pickup Time: <%= @riders_driver.pickup_time %><BR>
+				<%= @event.riders_for_driver(@riders_driver.driver_id).size %> / <%= @riders_driver.pickup_capacity %><BR>
+				<%= form_for @event do |f| %>
+					<%= f.fields_for @instance do |i| %>
+						<%= hidden_field_tag "action_taken", "rider_leave_driver" %>
+						<%= hidden_field_tag "driver_id", driver_i.driver_id %>
+						<%= i.submit "Leave Car" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
 	<div class="drivers">
 		<% @open_drivers.each do |driver_i| %>
 			<div class="driver">
@@ -10,7 +34,7 @@
 					<%= f.fields_for @instance do |i| %>
 						<%= hidden_field_tag "action_taken", "rider_add_driver" %>
 						<%= hidden_field_tag "driver_id", driver_i.driver_id %>
-						<%= i.submit %>
+						<%= i.submit "Join Driver" %>
 					<% end %>
 				<% end %>
 			</div>

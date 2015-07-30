@@ -17,8 +17,10 @@ class EventsController < ApplicationController
       @event.remove_ride(current_user.id, params[:rider_id].to_i)
     elsif params["action_taken"] == "driver_quits"
       @event.delete_driver(current_user.id)
+      redirect_to new_event_ride_instance_path(@event)
     elsif params["action_taken"] == "rider_quits" 
       @event.delete_rider(current_user.id) 
+      redirect_to new_event_ride_instance_path(@event)
     end
     redirect_to :back
   end

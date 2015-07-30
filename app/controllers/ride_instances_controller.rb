@@ -5,11 +5,12 @@ class RideInstancesController < ApplicationController
     if @is_rider
       @open_drivers = @event.free_driver_instances
       @instance = @event.get_rider_id(current_user.id)
+      if @event.has_ride?(current_user.id)
+        @riders_driver = get_driver_of(current_user.id)
+      end
     else
     end
   end
-
-  
 
   def new
     @event = Event.find(params[:event_id])
