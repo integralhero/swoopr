@@ -1,2 +1,26 @@
-<h1>RideInstance#index</h1>
-<p>Find me in app/views/ride_instance/index.html.erb</p>
+<% if @is_rider %>
+	<div class="drivers">
+		<% @open_drivers.each do |driver_i| %>
+			<div class="driver">
+				Driver: <%= driver_i.driver.name %><BR>
+				Pickup Location: <%= driver_i.pickup_location %><BR>
+				Pickup Time: <%= driver_i.pickup_time %><BR>
+				<%= @event.riders_for_driver(driver_i.driver_id).size %> / <%= driver_i.pickup_capacity %><BR>
+				<%= form_for @event do |f| %>
+					<%= f.fields_for @instance do |i| %>
+						<%= hidden_field_tag "action_taken", "rider_add_driver" %>
+						<%= hidden_field_tag "driver_id", driver_i.driver_id %>
+						<%= i.submit %>
+					<% end %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+	<% if @open_drivers.size == 0 %>
+		Sorry, looks like no more spots left!
+	<% end %>
+	
+<% else %>
+	Driver
+<% end %>
+

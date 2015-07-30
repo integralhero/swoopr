@@ -39,8 +39,11 @@ ActiveRecord::Schema.define(version: 201507291703443) do
     t.integer  "event_id"
     t.integer  "rider_id"
     t.integer  "driver_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.time     "pickup_time"
+    t.string   "pickup_location"
+    t.integer  "pickup_capacity"
   end
 
   add_index "ride_instances", ["driver_id"], name: "index_ride_instances_on_driver_id", using: :btree

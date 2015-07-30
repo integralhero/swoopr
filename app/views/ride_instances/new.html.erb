@@ -1,4 +1,18 @@
 <%= form_for [@event, @instance] do |i| %>
 	<input type="text" name="instance[type]">
+	<input type="text" name="instance[pickup]">
+	<input type="text" name="instance[capacity]">
+	<div class='input-group date' id='datetimepicker2'>
+	    <input type='text' class="form-control" name="instance[pickup_time]"/>
+	    <span class="input-group-addon">
+	        <span class="glyphicon glyphicon-calendar"></span>
+	    </span>
+	</div>
 	<%= i.submit %>
 <% end %>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker2').datetimepicker();
+    });
+</script>

@@ -7,6 +7,22 @@ class EventsController < ApplicationController
   	@events = Event.all
   end
 
+  def update
+    @event = Event.find(params[:id])
+    if params["action_taken"] == "rider_add_driver"
+      @event.add_ride(params[:driver_id].to_i, current_user.id)
+    elsif params["action_taken"] == "rider_leave_driver"
+      @event.remove_ride(params[:driver_id].to_i, current_user.id)
+    elsif params["action_taken"] == "driver_remove_rider"
+      @event.remove_ride(current_user.id, params[:rider_id].to_i)
+    elsif params["action_taken"] == "driver_quits"
+      @event.delete_driver(current_user.id)
+    elsif params["action_taken"] == "rider_quits" 
+      @event.delete_rider(current_user.id) 
+    end
+    redirect_to :back
+  end
+
   def create
   	@e = Event.new
     @e.location = event_params[:location]
