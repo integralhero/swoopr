@@ -45,6 +45,37 @@
 	<% end %>
 	
 <% else %>
-	Driver
+	<%= form_for @event do |f| %>
+		<%= f.fields_for @instance do |i| %>
+			<%= hidden_field_tag "action_taken", "driver_quits" %>
+			<%= i.submit "Leave Event" %>
+		<% end %>
+	<% end %>
+	<div id="current">
+		<% @current_riders.each do |rider| %>
+			Name: <span><%= rider.name %></span><BR>
+			<%= form_for @event do |f| %>
+					<%= f.fields_for @instance do |i| %>
+						<%= hidden_field_tag "action_taken", "driver_remove_rider" %>
+						<%= hidden_field_tag "rider_id", rider.id %>
+						<%= i.submit "Kick Rider" %>
+					<% end %>
+				<% end %>
+		<% end %>
+	</div>
+	<div id="riders">
+		<%= @free_riders.each do |r| %>
+			<div class="rider">
+				<span class="name"><%= r.name %></span>
+				<%= form_for @event do |f| %>
+					<%= f.fields_for @instance do |i| %>
+						<%= hidden_field_tag "action_taken", "driver_add_rider" %>
+						<%= hidden_field_tag "driver_id", r.id %>
+						<%= i.submit "Add Rider" %>
+					<% end %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
 <% end %>
 

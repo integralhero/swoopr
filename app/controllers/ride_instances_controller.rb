@@ -9,6 +9,8 @@ class RideInstancesController < ApplicationController
         @riders_driver = get_driver_of(current_user.id)
       end
     else
+      @free_riders = @event.free_riders
+      @current_riders = @event.riders_for_driver(current_user.id)
     end
   end
 

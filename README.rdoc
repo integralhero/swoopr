@@ -14,8 +14,8 @@ Swoopr is a carpool coordination app made with RoR. Intended to be fast and simp
      * Leave a car **DONE**
     * (op) View all drivers + riders?
   * **Driver**
-    * View all riders for each driver
-    * View all free riders
-    * Add free rider to car
-    * Kick rider from car
+    * View all riders for each driver 
+    * View all free riders **DONE**
+    * Add free rider to car **DONE**
+    * Kick rider from car **DONE**
 * Cool CSS things

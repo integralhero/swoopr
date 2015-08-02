@@ -11,6 +11,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if params["action_taken"] == "rider_add_driver"
       @event.add_ride(params[:driver_id].to_i, current_user.id)
+    elsif params["action_taken"] == "driver_add_rider"
+      @event.add_ride(current_user.id, params[:rider_id].to_i)
     elsif params["action_taken"] == "rider_leave_driver"
       @event.remove_ride(params[:driver_id].to_i, current_user.id)
     elsif params["action_taken"] == "driver_remove_rider"
